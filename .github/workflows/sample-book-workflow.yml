@@ -1,0 +1,51 @@
+name: Sample book application workflow
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "Print step name"
+        run: echo "Building of node application started"
+  deploy-dev:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "Print step name"
+        run: echo "Building of DEV started"
+  test-dev:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "Print step name"
+        run: echo "Testing BOOKS test set on DEV has started..."
+  deploy-stg:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "Print step name"
+        run: echo "Building of STG started"
+  test-stg:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "Print step name"
+        run: echo "Testing BOOKS test set on STG has started...
+  deploy-prd:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "Print step name"
+        run: echo "Building of PRD started"
+  test-prd:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v4"
+      - name: "Print step name"
+        run: echo "Testing BOOKS test set on PRD has started..."
