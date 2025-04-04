@@ -10,48 +10,56 @@ jobs:
   build:
     runs-on: "self-hosted"
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "Print step name"
+      - uses: actions/checkout@v4
+      - name: Print step name
         run: echo "Building of node application started..."
+      - name: "Install all dependencies"
+        run: npm install
   deploy-dev:
     runs-on: "self-hosted"
     needs: [build]
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "Print step name"
+      - uses: actions/checkout@v4
+      - name: Print step name
         run: echo "Building of DEV started..."
+      - name: "Install all dependencies"
+        run: npm install
+      - name: Delete existing pm2 service
+        run: pm2 delete \"books-DEV\"
+      - name: Run sample-book-app pm2 service
+        run: pm2 start index.js --name \"books-DEV\" -- 1010
   test-dev:
     runs-on: "self-hosted"
     needs: [deploy-dev]
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "Print step name"
+      - uses: actions/checkout@v4
+      - name: Print step name
         run: echo "Testing BOOKS test set on DEV has started..."
   deploy-stg:
     runs-on: "self-hosted"
     needs: [test-dev]
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "Print step name"
+      - uses: actions/checkout@v4
+      - name: Print step name
         run: echo "Building of STG started..."
   test-stg:
     runs-on: "self-hosted"
     needs: [deploy-stg]
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "Print step name"
+      - uses: actions/checkout@v4
+      - name: Print step name
         run: echo "Testing BOOKS test set on STG has started..."
   deploy-prd:
     runs-on: "self-hosted"
     needs: [test-stg]
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "Print step name"
+      - uses: actions/checkout@v4
+      - name: Print step name
         run: echo "Building of PRD started..."
   test-prd:
     runs-on: "self-hosted"
     needs: [deploy-prd]
     steps:
-      - uses: "actions/checkout@v4"
-      - name: "Print step name"
+      - uses: actions/checkout@v4
+      - name: Print step name
         run: echo "Testing BOOKS test set on PRD has started..."
