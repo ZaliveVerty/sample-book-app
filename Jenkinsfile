@@ -49,7 +49,7 @@ def buildApp(){
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started..."
-    bat "pm2 start index.js --name -f \"books-${environment}\" -- ${port}"
+    bat "npx pm2 start index.js --name -f \"books-${environment}\" -- ${port}"
 }
 
 def test(String environment){
