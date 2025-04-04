@@ -54,5 +54,7 @@ def deploy(String environment, int port){
 
 def test(String test_set, String environment){
     echo "Testing ${test_set} test set on ${environment} against micro-service..."
+    git branch: 'main', poll: false, url: 'https://github.com/ZaliveVerty/api-automation.git'
+    bat "npm install"
     bat "npm run ${test_set} ${test_set}_${environment}"
 }
