@@ -16,7 +16,7 @@ pipeline {
         }
         stage('test-dev') {
             steps {
-                test("DEV")
+                test("BOOKS", "DEV")
             }
         }
         stage('deploy-stg') {
@@ -26,7 +26,7 @@ pipeline {
         }
         stage('test-stg') {
             steps {
-                test("STG")
+                test("BOOKS", "STG")
             }
         }
         stage('deploy-prd') {
@@ -36,7 +36,7 @@ pipeline {
         }
         stage('test-prd') {
             steps {
-                test("PRD")
+                test("BOOKS", "PRD")
             }
         }
     }
@@ -49,9 +49,10 @@ def buildApp(){
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started..."
-    bat "npx pm2 start index.js --name \"books-${environment}\" -- ${port}"
+    bat "pm2 start index.js --name \"books-${environment}\" -- ${port}"
 }
 
-def test(String environment){
-    echo "Running tests on ${environment} against micro-service..."
+def test(String test_set, String environment){
+    echo "Testing ${test_set} test set on ${environment} against micro-service..."
+    bat "npm run ${test_set} ${test_set}_${environment}"
 }
