@@ -45,12 +45,11 @@ pipeline {
 def buildApp(){
     echo 'Building micro-service...'
     bat "npm install"
-    bat "npm install --save-dev"
 }
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started..."
-    bat "npx pm2 start index.js --name \"books-${environment}\" -- ${port}"
+    bat "pm2 start index.js --name -f \"books-${environment}\" -- ${port}"
 }
 
 def test(String environment){
