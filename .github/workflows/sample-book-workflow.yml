@@ -36,7 +36,7 @@ jobs:
     steps:
       - uses: "actions/checkout@v4"
       - name: "Print step name"
-        run: echo "Testing BOOKS test set on STG has started...
+        run: echo "Testing BOOKS test set on STG has started..."
   deploy-prd:
     runs-on: "ubuntu-latest"
     steps:
