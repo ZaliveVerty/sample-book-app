@@ -11,7 +11,7 @@ pipeline {
         }
         stage('deploy-dev') {
             steps {
-                deploy("DEV")
+                deploy("DEV", 1010)
             }
         }
         stage('test-dev') {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('deploy-stg') {
             steps {
-                deploy("STG")
+                deploy("STG", 2020)
             }
         }
         stage('test-stg') {
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('deploy-prd') {
             steps {
-                deploy("PRD")
+                deploy("PRD", 3030)
             }
         }
         stage('test-prd') {
@@ -44,10 +44,12 @@ pipeline {
 
 def buildApp(){
     echo 'Building micro-service...'
+    bat "npm install"
 }
 
-def deploy(String environment){
+def deploy(String environment, int port){
     echo "Deployment to ${environment} has started..."
+    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
 def test(String environment){
