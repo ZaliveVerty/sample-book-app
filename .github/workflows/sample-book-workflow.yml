@@ -25,6 +25,7 @@ jobs:
       - name: "Install all dependencies"
         run: npm install
       - name: Delete existing pm2 service
+        shell: bash
         run: "pm2 delete \"books-DEV\" || exit 0"
       - name: Run sample-book-app pm2 service
         run: pm2 start index.js --name "books-DEV" -- 1010
