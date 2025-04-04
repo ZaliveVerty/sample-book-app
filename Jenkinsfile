@@ -49,6 +49,7 @@ def buildApp(){
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started..."
+    git branch: 'main', poll: false, url: 'https://github.com/ZaliveVerty/sample-book-app.git'
     bat "npx pm2 start index.js --name \"books-${environment}\" -- ${port}"
 }
 
