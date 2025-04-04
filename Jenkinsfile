@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'Building micro-service...'
+                build()
             }
         }
         stage('deploy-dev') {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('test-dev') {
             steps {
-                echo 'Running tests on DEV against micro-service...'
+                deploy("DEV")
             }
         }
         stage('deploy-stg') {
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('test-stg') {
             steps {
-                echo 'Running tests on STG against micro-service...'
+                deploy("STG")
             }
         }
         stage('deploy-prd') {
@@ -34,12 +34,20 @@ pipeline {
         }
         stage('test-prd') {
             steps {
-                echo 'Running tests on PRD against micro-service...'
+                deploy("PRD")
             }
         }
     }
 }
 
+def build(){
+    echo 'Building micro-service...'
+}
+
 def deploy(String environment){
+    echo "Deployment to ${environment} has started..."
+}
+
+def test(String environment){
     echo "Running tests on ${environment} against micro-service..."
 }
