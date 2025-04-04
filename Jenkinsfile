@@ -44,8 +44,8 @@ pipeline {
 
 def buildApp(){
     echo 'Building micro-service...'
-    bat "ls"
     bat "npm install"
+    bat "npm install -g pm2"
 }
 
 def deploy(String environment, int port){
