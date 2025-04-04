@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                build()
+                buildApp()
             }
         }
         stage('deploy-dev') {
@@ -14,7 +14,7 @@ pipeline {
         }
         stage('test-dev') {
             steps {
-                deploy("DEV")
+                test("DEV")
             }
         }
         stage('deploy-stg') {
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('test-stg') {
             steps {
-                deploy("STG")
+                test("STG")
             }
         }
         stage('deploy-prd') {
@@ -34,13 +34,13 @@ pipeline {
         }
         stage('test-prd') {
             steps {
-                deploy("PRD")
+                test("PRD")
             }
         }
     }
 }
 
-def build(){
+def buildApp(){
     echo 'Building micro-service...'
 }
 
