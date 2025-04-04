@@ -44,6 +44,7 @@ pipeline {
 
 def buildApp(){
     echo 'Building micro-service...'
+    bat "ls"
     bat "npm install"
 }
 
