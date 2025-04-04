@@ -12,14 +12,14 @@ jobs:
     steps:
       - uses: "actions/checkout@v4"
       - name: "Print step name"
-        run: echo "Building of node application started"
+        run: echo "Building of node application started..."
   deploy-dev:
     runs-on: "self-hosted"
     needs: [build]
     steps:
       - uses: "actions/checkout@v4"
       - name: "Print step name"
-        run: echo "Building of DEV started"
+        run: echo "Building of DEV started..."
   test-dev:
     runs-on: "self-hosted"
     needs: [deploy-dev]
@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: "actions/checkout@v4"
       - name: "Print step name"
-        run: echo "Building of STG started"
+        run: echo "Building of STG started..."
   test-stg:
     runs-on: "self-hosted"
     needs: [deploy-stg]
@@ -47,7 +47,7 @@ jobs:
     steps:
       - uses: "actions/checkout@v4"
       - name: "Print step name"
-        run: echo "Building of PRD started"
+        run: echo "Building of PRD started..."
   test-prd:
     runs-on: "self-hosted"
     needs: [deploy-prd]
