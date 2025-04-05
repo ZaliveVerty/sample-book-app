@@ -37,7 +37,7 @@ jobs:
           repository: 'ZaliveVerty/api-automation.git'
           ref: 'main'
       - name: Print step name
-        run: echo "Testing BOOKS test set on DEV has started... "
+        run: echo "Testing BOOKS test set on DEV has started..."
       - name: "Install all dependencies"
         run: npm install
       - name: Run API tests
