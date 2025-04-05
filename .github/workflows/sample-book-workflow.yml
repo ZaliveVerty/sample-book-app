@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Print step name
-        run: echo "Building of node application started..."
+        run: echo "Building of node application started. .."
       - name: "Install all dependencies"
         run: npm install
   deploy-dev:
