@@ -25,10 +25,14 @@ jobs:
     runs-on: "self-hosted"
     needs: [deploy-dev]
     steps:
-      - uses: ./.github/actions/test
-        with:
-          environment: 'DEV'
-          test-suite: 'BOOKS'
+    - uses: actions/checkout@v4
+      with:
+        repository: 'ZaliveVerty/api-automation.git'
+        ref: 'main'
+    - uses: ./.github/actions/test
+      with:
+        environment: 'DEV'
+        test-suite: 'BOOKS'
   deploy-stg:
     runs-on: "self-hosted"
     needs: [test-dev]
@@ -42,10 +46,14 @@ jobs:
     runs-on: "self-hosted"
     needs: [deploy-stg]
     steps:
-      - uses: ./.github/actions/test
-        with:
-          environment: 'STG'
-          test-suite: 'BOOKS'
+    - uses: actions/checkout@v4
+      with:
+        repository: 'ZaliveVerty/api-automation.git'
+        ref: 'main'
+    - uses: ./.github/actions/test
+      with:
+        environment: 'STG'
+        test-suite: 'BOOKS'
   deploy-prd:
     runs-on: "self-hosted"
     needs: [test-stg]
@@ -59,7 +67,11 @@ jobs:
     runs-on: "self-hosted"
     needs: [deploy-prd]
     steps:
-      - uses: ./.github/actions/test
-        with:
-          environment: 'PRD'
-          test-suite: 'BOOKS'
+    - uses: actions/checkout@v4
+      with:
+        repository: 'ZaliveVerty/api-automation.git'
+        ref: 'main'
+    - uses: ./.github/actions/test
+      with:
+        environment: 'PRD'
+        test-suite: 'BOOKS'
