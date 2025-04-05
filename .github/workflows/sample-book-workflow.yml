@@ -17,7 +17,7 @@ jobs:
     needs: [build]
     steps:
       - uses: actions/checkout@v4
-      - uses: '·/.github/actions/deploy'
+      - uses: ·/.github/actions/deploy
         with:
           environment: 'DEV'
           port: '1100'
@@ -40,7 +40,7 @@ jobs:
     needs: [test-dev]
     steps:
       - uses: actions/checkout@v4
-      - uses: '·/.github/actions/deploy'
+      - uses: ./.github/actions/deploy
         with:
           environment: 'STG'
           port: '2200'
@@ -56,7 +56,7 @@ jobs:
     needs: [test-stg]
     steps:
       - uses: actions/checkout@v4
-      - uses: '·/.github/actions/deploy'
+      - uses: ·/.github/actions/deploy
         with:
           environment: 'PRD'
           port: '3300'
