@@ -11,7 +11,7 @@ runs:
   using: composite
   steps:
     - uses: actions/checkout@v4
-        with:
+      with:
           repository: 'ZaliveVerty/api-automation.git'
           ref: 'main'
     - name: Print step name
